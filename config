@@ -4,7 +4,7 @@
 # * Monitor configuration
 exec --no-startup-id $HOME/.scripts/automonitor.sh
 # * Polybar
-exec --no-startup-id $HOME/.scripts/polybar.sh
+exec --no-startup-id $HOME/.scripts/polybar/start.sh
 
 # * Composite manager
 #exec --no-startup-id "xcompmgr"
@@ -39,7 +39,7 @@ set $right l
 
 # Custom apps
 set $terminal_app urxvt
-set $web_browser_app chrome
+set $web_browser_app firefox
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
@@ -191,7 +191,6 @@ bindsym Mod4+r mode "resize"
 focus_on_window_activation smart
 
 # * Borders
-hide_edge_borders both
 # * Gaps
 default_border normal 1
 
