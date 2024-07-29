@@ -190,6 +190,10 @@ bindsym Mod4+r mode "resize"
 
 focus_on_window_activation smart
 
+# * Fucking notifications are a half-screen-width container
+for_window [class="notification"] floating enable
+for_window [class="Alert" instance="firefox"] floating enable
+for_window [window_type="notification"] floating enable
 # * Borders
 # * Gaps
 default_border normal 1
