@@ -6,8 +6,9 @@ exec --no-startup-id $HOME/.scripts/automonitor.sh
 # * Polybar
 exec --no-startup-id $HOME/.scripts/polybar/start.sh
 
+exec --no-startup-id $HOME/.scripts/polybar/i3mode.sh
+
 # * Composite manager
-#exec --no-startup-id "xcompmgr"
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # * Background image
@@ -15,7 +16,7 @@ exec --no-startup-id ~/.scripts/fehbg
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id dex --autostart --environment i3
 
 # * This basically locks the screen before suspend, thx for the security!
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -41,75 +42,76 @@ set $right l
 set $terminal_app alacritty
 set $web_browser_app firefox
 
-# use Mouse+Mod4 to drag floating windows to their wanted position
-floating_modifier Mod4
+set $mod Mod4
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
 
 # * Terminal
-bindsym Mod4+Return exec $terminal_app
+bindsym $mod+Return exec $terminal_app
 
 # * Misc. commands (Kill, menu, etc.)
-bindsym Mod4+Shift+q kill
-bindsym Mod4+d exec "rofi -modi drun,run -show drun"
-bindsym Mod4+Ctrl+l exec "dm-tool switch-to-greeter"
-bindsym Mod4+b exec $web_browser_app
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
+bindsym $mod+Ctrl+l exec "dm-tool switch-to-greeter"
+bindsym $mod+b exec $web_browser_app
 bindsym Control+Alt+t exec "telegram-desktop"
 bindsym Print exec flameshot gui --delay 100
-bindsym Mod4+m exec $music_player
+bindsym $mod+m exec $music_player
 
 # change focus
-bindsym Mod4+$left focus left
-bindsym Mod4+$down focus down
-bindsym Mod4+$up focus up
-bindsym Mod4+$right focus right
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
 
 # alternatively, you can use the cursor keys:
-bindsym Mod4+Left focus left
-bindsym Mod4+Down focus down
-bindsym Mod4+Up focus up
-bindsym Mod4+Right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
 
 
 # move focused window
-bindsym Mod4+Shift+$left move left
-bindsym Mod4+Shift+$down move down
-bindsym Mod4+Shift+$up move up
-bindsym Mod4+Shift+$right move right
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
 
 # alternatively, you can use the cursor keys:
 
 # split in horizontal orientation
-bindsym Mod4+Ctrl+h split h
+bindsym $mod+Ctrl+h split h
 
 # split in vertical orientation
-bindsym Mod4+Ctrl+v split v
+bindsym $mod+Ctrl+v split v
 
 # enter fullscreen mode for the focused container
-bindsym Mod4+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 
-bindsym Mod4+w layout tabbed
-bindsym Mod4+e layout toggle split
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym Mod4+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym Mod4+space focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym Mod4+a focus parent
+bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym Mod4+d focus child
+#bindsym $mod+d focus child
 
 # move the currently focused window to the scratchpad
-bindsym Mod4+Shift+minus move scratchpad
+bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym Mod4+minus scratchpad show
+bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -127,39 +129,95 @@ set $ws11 11
 set $ws12 12
 
 # switch to workspace
-bindsym Mod4+1 workspace number $ws1
-bindsym Mod4+2 workspace number $ws2
-bindsym Mod4+3 workspace number  $ws3
-bindsym Mod4+4 workspace number $ws4
-bindsym Mod4+5 workspace number $ws5
-bindsym Mod4+6 workspace number $ws6
-bindsym Mod4+7 workspace number $ws7
-bindsym Mod4+8 workspace number $ws8
-bindsym Mod4+9 workspace number $ws9
-bindsym Mod4+0 workspace number $ws10
-bindsym Mod4+F11 workspace number $ws11
-bindsym Mod4+F12 workspace number $ws12
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number  $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod+F11 workspace number $ws11
+bindsym $mod+F12 workspace number $ws12
 
 # move focused container to workspace
-bindsym Mod4+Shift+1 move container to workspace number $ws1
-bindsym Mod4+Shift+2 move container to workspace number $ws2
-bindsym Mod4+Shift+3 move container to workspace number $ws3
-bindsym Mod4+Shift+4 move container to workspace number $ws4
-bindsym Mod4+Shift+5 move container to workspace number $ws5
-bindsym Mod4+Shift+6 move container to workspace number $ws6
-bindsym Mod4+Shift+7 move container to workspace number $ws7
-bindsym Mod4+Shift+8 move container to workspace number $ws8
-bindsym Mod4+Shift+9 move container to workspace number $ws9
-bindsym Mod4+Shift+0 move container to workspace number $ws10
-bindsym Mod4+Shift+F11 move container to workspace number $ws11
-bindsym Mod4+Shift+F12 move container to workspace number $ws12
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+F11 move container to workspace number $ws11
+bindsym $mod+Shift+F12 move container to workspace number $ws12
 
+set $i3_resurrect i3-resurrect
+
+mode "save" {
+  bindsym 1 exec "$i3_resurrect save -w 1 --swallow=class,instance,title"
+  bindsym 2 exec "$i3_resurrect save -w 2 --swallow=class,instance,title"
+  bindsym 3 exec "$i3_resurrect save -w 3 --swallow=class,instance,title"
+  bindsym 4 exec "$i3_resurrect save -w 4 --swallow=class,instance,title"
+  bindsym 5 exec "$i3_resurrect save -w 5 --swallow=class,instance,title"
+  bindsym 6 exec "$i3_resurrect save -w 6 --swallow=class,instance,title"
+  bindsym 7 exec "$i3_resurrect save -w 7 --swallow=class,instance,title"
+  bindsym 8 exec "$i3_resurrect save -w 8 --swallow=class,instance,title"
+  bindsym 9 exec "$i3_resurrect save -w 9 --swallow=class,instance,title"
+  bindsym 0 exec "$i3_resurrect save -w 10 --swallow=class,instance,title"
+
+  # Back to normal: Enter, Escape, or s
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym s mode "default"
+  bindsym $mod+s mode "default"
+}
+
+bindsym $mod+s mode "save"
+
+
+# Restore workspace mode.
+mode "restore" {
+  bindsym $mod exec "$i3_resurrect restore -w 1 --programs-only"
+  bindsym 2 exec "$i3_resurrect restore -w 2 --programs-only"
+  bindsym 3 exec "$i3_resurrect restore -w 3 --programs-only"
+  bindsym 4 exec "$i3_resurrect restore -w 4 --programs-only"
+  bindsym 5 exec "$i3_resurrect restore -w 5 --programs-only"
+  bindsym 6 exec "$i3_resurrect restore -w 6 --programs-only"
+  bindsym 7 exec "$i3_resurrect restore -w 7 --programs-only"
+  bindsym 8 exec "$i3_resurrect restore -w 8 --programs-only"
+  bindsym 9 exec "$i3_resurrect restore -w 9 --programs-only"
+  bindsym 0 exec "$i3_resurrect restore -w 10 --programs-only"
+
+  bindsym $mod+1 exec "$i3_resurrect restore -w 1 --layout-only"
+  bindsym $mod+2 exec "$i3_resurrect restore -w 2 --layout-only"
+  bindsym $mod+3 exec "$i3_resurrect restore -w 3 --layout-only"
+  bindsym $mod+4 exec "$i3_resurrect restore -w 4 --layout-only"
+  bindsym $mod+5 exec "$i3_resurrect restore -w 5 --layout-only"
+  bindsym $mod+6 exec "$i3_resurrect restore -w 6 --layout-only"
+  bindsym $mod+7 exec "$i3_resurrect restore -w 7 --layout-only"
+  bindsym $mod+8 exec "$i3_resurrect restore -w 8 --layout-only"
+  bindsym $mod+9 exec "$i3_resurrect restore -w 9 --layout-only"
+  bindsym $mod+0 exec "$i3_resurrect restore -w 10 --layout-only"
+
+  # Back to normal: Enter, Escape, or n
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym n mode "default"
+  bindsym $mod+n mode "default"
+}
+
+bindsym $mod+n mode "restore"
 # reload the configuration file
-bindsym Mod4+Shift+c reload
+bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym Mod4+Shift+r restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -180,13 +238,13 @@ mode "resize" {
         bindsym Up          resize shrink height 10 px or 10 ppt
         bindsym Right       resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or Mod4+r
+        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym Mod4+r mode "default"
+        bindsym $mod+r mode "default"
 }
 
-bindsym Mod4+r mode "resize"
+bindsym $mod+r mode "resize"
 
 focus_on_window_activation smart
 
