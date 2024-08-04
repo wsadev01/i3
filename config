@@ -38,7 +38,7 @@ set $left h
 set $right l
 
 # Custom apps
-set $terminal_app urxvt
+set $terminal_app alacritty
 set $web_browser_app firefox
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
