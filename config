@@ -3,9 +3,9 @@
 # * Set-up second monitor to RIGHT
 # * Monitor configuration
 exec --no-startup-id $HOME/.scripts/automonitor.sh
+
 # * Polybar
 exec --no-startup-id $HOME/.scripts/polybar/start.sh
-
 exec --no-startup-id $HOME/.scripts/polybar/i3mode.sh
 
 # * Composite manager
