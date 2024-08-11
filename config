@@ -8,6 +8,9 @@ exec --no-startup-id $HOME/.scripts/automonitor.sh
 exec --no-startup-id $HOME/.scripts/polybar/start.sh
 exec --no-startup-id $HOME/.scripts/polybar/i3mode.sh
 
+# * Lockscreen
+exec --no-startup-id $HOME/.scripts/polybar/lockscreen.sh
+
 # * Composite manager
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
@@ -19,7 +22,7 @@ exec --no-startup-id ~/.scripts/fehbg
 exec --no-startup-id dex --autostart --environment i3
 
 # * This basically locks the screen before suspend, thx for the security!
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/.lockscreen --nofork
 
 # *===== Audio Control for built-in device buttons =====* #
 # Use pactl to adjust volume in PulseAudio.
