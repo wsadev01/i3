@@ -1,6 +1,5 @@
-
-
-# * Set-up second monitor to RIGHT
+workspace_layout tabbed
+# * Set-up second monitor to UP
 # * Monitor configuration
 exec --no-startup-id $HOME/.scripts/automonitor.sh
 
